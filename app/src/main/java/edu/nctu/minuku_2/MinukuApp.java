@@ -24,7 +24,7 @@ package edu.nctu.minuku_2;
 
 import android.content.Context;
 
-import com.bugfender.sdk.Bugfender;
+//import com.bugfender.sdk.Bugfender;
 import com.firebase.client.Config;
 import com.instabug.library.IBGInvocationEvent;
 import com.instabug.library.Instabug;
@@ -62,8 +62,8 @@ public class MinukuApp extends android.app.Application {
         */
         UserPreferences.getInstance().Initialize(getApplicationContext());
 
-        Bugfender.init(this, "N7pdXEGbmKhK9k8YtpFPyXORtsAwgZa5", false);
-        Bugfender.setForceEnabled(true);
+        //Bugfender.init(this, "N7pdXEGbmKhK9k8YtpFPyXORtsAwgZa5", false);
+        //Bugfender.setForceEnabled(true);
 
         new Instabug.Builder(this, "2be6d236d601237a17e9c6314455930a")
                 .setInvocationEvent(IBGInvocationEvent.IBGInvocationEventShake)

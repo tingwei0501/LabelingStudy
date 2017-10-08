@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="support-v4-24.2.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/1802ab4f13871c81c89f9aeec0cb4972a125b7c1/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/1802ab4f13871c81c89f9aeec0cb4972a125b7c1/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

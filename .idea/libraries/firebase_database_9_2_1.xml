@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="firebase-database-9.2.1">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.2.1/res" />
-      <root url="jar://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/a84681dc32087930bbb1e0a09221412f6754d0ce/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/a84681dc32087930bbb1e0a09221412f6754d0ce/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

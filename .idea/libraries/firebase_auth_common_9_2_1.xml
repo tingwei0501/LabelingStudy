@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="firebase-auth-common-9.2.1">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.2.1/res" />
-      <root url="jar://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/bea463d5a9b86e9e7c469ac1a46284784446a75b/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/bea463d5a9b86e9e7c469ac1a46284784446a75b/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

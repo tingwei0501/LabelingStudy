@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="play-services-9.2.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.google.android.gms/play-services/9.2.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/minuku2-extended/build/intermediates/exploded-aar/com.google.android.gms/play-services/9.2.1/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/8d089b42bcff882ba2437a8897d5b3b90a57acec/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/8d089b42bcff882ba2437a8897d5b3b90a57acec/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

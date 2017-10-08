@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import edu.nctu.minuku_2.CounterActivity;
 import edu.nctu.minuku_2.R;
 
 //import edu.ohio.minuku_2.R;
@@ -77,7 +78,7 @@ public class home extends AppCompatActivity {
         public void onClick(View v) {
             Log.e(LOG_TAG,"move clicked");
 
-            mContext.startActivity(new Intent(mContext, timer_move.class));
+            mContext.startActivity(new Intent(mContext, Counter.class));
 
         }
     };
