@@ -137,6 +137,7 @@
     <orderEntry type="library" exported="" name="play-services-location-9.2.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-ads-9.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-25.1.0" level="project" />
+    <orderEntry type="library" exported="" name="timelineview-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-impl-9.2.1" level="project" />
     <orderEntry type="library" exported="" name="nexusdialog-0.4.0" level="project" />

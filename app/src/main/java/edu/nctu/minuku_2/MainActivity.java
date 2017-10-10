@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         mTabs.addTab(mTabs.newTab().setText("紀錄"));
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        timerview.setTag(Constant.home_tag);
+        //timerview.setTag(Constant.home_tag);
 
 
     }

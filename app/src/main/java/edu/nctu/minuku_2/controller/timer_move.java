@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import edu.nctu.minuku_2.CounterActivity;
 import edu.nctu.minuku_2.R;
 
 //import edu.ohio.minuku_2.R;
@@ -39,9 +40,16 @@ public class timer_move extends AppCompatActivity {
         car = (ImageButton) findViewById(R.id.car);
 
         site = (Button) findViewById(R.id.site);
-
+        walk.setOnClickListener(walkingTime);
         site.setOnClickListener(siting);
     }
+
+    private ImageButton.OnClickListener walkingTime = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivity(new Intent(timer_move.this, CounterActivity.class));
+        }
+    };
 
     //to view timer_site
     private Button.OnClickListener siting = new Button.OnClickListener() {

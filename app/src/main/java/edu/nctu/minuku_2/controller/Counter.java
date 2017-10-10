@@ -1,10 +1,12 @@
 package edu.nctu.minuku_2.controller;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,32 +22,63 @@ import static edu.nctu.minuku_2.MainActivity.task;
 
 public class Counter extends AppCompatActivity {
 
-    TextView counter;
-    ImageButton play, pause, stop;
+    private Context mContext;
+    private LayoutInflater mInflater;
+
+    public static TextView counter;
+    public static ImageButton play, pause, stop;
     private int tsec=0,csec=0,cmin=0,chour=0;
     private boolean startflag=false;
+
+    public Counter(){}
+
+    public Counter(Context mContext){
+        this.mContext = mContext;
+    }
+
+    public Counter(LayoutInflater mInflater){
+        this.mInflater = mInflater;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.counter);
-
-        counter = (TextView)findViewById(R.id.tv_counter);
-
-        play = (ImageButton) findViewById(R.id.btn_play);
-        pause = (ImageButton) findViewById(R.id.btn_pause);
-        stop = (ImageButton)findViewById(R.id.btn_stop);
+//        counter = (TextView)findViewById(R.id.tv_counter);
+////
+//        play = (ImageButton) findViewById(R.id.btn_play);
+//        pause = (ImageButton) findViewById(R.id.btn_pause);
+//        stop = (ImageButton)findViewById(R.id.btn_stop);
 
         //宣告Timer
-        Timer timer01 =new Timer();
+//        Timer timer01 =new Timer();
 
         //設定Timer(task為執行內容，0代表立刻開始,間格1秒執行一次)
-        timer01.schedule(task, 0,1000);
+//        timer01.schedule(task, 0,1000);
+        //Button監聽
+//        play.setOnClickListener(listener);
+//        pause.setOnClickListener(listener);
+//        stop.setOnClickListener(listener);
+
+
+    }
+
+    public void initCounter(View view){
+        counter = (TextView) view.findViewById(R.id.tv_counter);
+
+        play = (ImageButton) view.findViewById(R.id.btn_play);
+        pause = (ImageButton) view.findViewById(R.id.btn_pause);
+        stop = (ImageButton)view.findViewById(R.id.btn_stop);
 
         //Button監聽
         play.setOnClickListener(listener);
         pause.setOnClickListener(listener);
         stop.setOnClickListener(listener);
 
+        //宣告Timer
+        Timer timer01 =new Timer();
+
+        //設定Timer(task為執行內容，0代表立刻開始,間格1秒執行一次)
+        timer01.schedule(task, 0,1000);
     }
 
     //TimerTask無法直接改變元件因此要透過Handler來當橋樑

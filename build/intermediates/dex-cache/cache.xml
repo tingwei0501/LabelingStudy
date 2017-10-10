@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\minukucore\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="81aed69b7f6841d47eb6d4edbd0393fa2efe778d">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\4\classes_5f0e640c78f69dc2d0104fd464fe339de2bb35d3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\.android\build-cache\a6f834d383dd31e1e27ed77e7bdcbda315650848\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d1e2895668ba31dc5234353052cc5bdf2e06030f">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_31b6d93a52f8a2f58109517d24dc4b787e3f1df3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\.android\build-cache\8b9c311c3063211534ebb1c39d6f0520e05e1c2b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7ef3f43ce343e2eb5ffea3ba5bb02192fc1dd191">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b236bd42b0bfd948385a3cc1a768c229faa38983\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\.android\build-cache\54560fafcf507df0aa8e1a97f4768eb776487776\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="187b6b82610a6029bf4b02f5393d29139818488f">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1f8147567d335f376e618fb0b87382f91942bfe9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\.android\build-cache\c4360f63b610b4e683f001a5868a166872079980\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43ee9bdb9c95b5aa17e68ce7cb44c23ab6f4cc4a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\.android\build-cache\da45b9a6c2ee168d623269b55ec47170c89bd6e0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f6a785a91cb33aa8f5f277ec65f18aa0ae71d406\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_9b71932bc758a4c79961eaec93b73bce0e8f8562\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\minuku2-extended\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="79a79e1d8fede35315ead1c4d7af79c97793c091">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\4\classes_590c96857137ee0754c895a111f0c8b14f968056\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\opencsv-3.10\opencsv-3.10.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ef5412b1c4d299e555b137c9a131cf019169c79b">
+        <dex dex="C:\Users\Jimmy\Desktop\MUIlab\Label_Studying\app\build\intermediates\transforms\dex\debug\folders\1000\4\opencsv-3.10_71425fb9b0fa4a8ccb3d3e332742b96bbabdcafc\classes.dex" />
+    </item>
+
+</items>

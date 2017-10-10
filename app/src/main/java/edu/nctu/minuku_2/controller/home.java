@@ -78,7 +78,7 @@ public class home extends AppCompatActivity {
         public void onClick(View v) {
             Log.e(LOG_TAG,"move clicked");
 
-            mContext.startActivity(new Intent(mContext, Counter.class));
+            mContext.startActivity(new Intent(mContext, timer_move.class));
 
         }
     };

@@ -12,6 +12,7 @@ public class Constant {
 
     public final static String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss Z";
     public final static String home_tag = "home";
+    public final static String counter_tag = "counter";
     public final static String timer_move_tag = "timer_move";
 
 //    public static String DEVICE_ID = "NA";

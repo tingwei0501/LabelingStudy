@@ -227,7 +227,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".CounterActivity" />
-        <activity android:name=".controller.Counter"></activity>
+        <activity android:name=".controller.Counter" />
+        <activity android:name=".controller.Timeline" />
+        <activity android:name=".controller.CardView"></activity>
     </application>
 
 </manifest>
