@@ -229,7 +229,8 @@
         <activity android:name=".CounterActivity" />
         <activity android:name=".controller.Counter" />
         <activity android:name=".controller.Timeline" />
-        <activity android:name=".controller.CardView"></activity>
+        <activity android:name=".controller.CardView" />
+        <activity android:name=".controller.PlaceSelection" />
     </application>
 
 </manifest>

@@ -42,6 +42,7 @@ public class timer_site extends AppCompatActivity {
         move = (Button) findViewById(R.id.move);
 
         move.setOnClickListener(moving);
+        Customize.setOnClickListener(custom);
 
     }
 
@@ -53,6 +54,13 @@ public class timer_site extends AppCompatActivity {
             //TODO this function will increase in stack, need to be optimized.
             startActivity(new Intent(timer_site.this, timer_move.class));
 
+        }
+    };
+
+    private ImageButton.OnClickListener custom = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivity(new Intent(timer_site.this, PlaceSelection.class));
         }
     };
 
