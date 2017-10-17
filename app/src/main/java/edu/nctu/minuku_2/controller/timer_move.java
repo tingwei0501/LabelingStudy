@@ -8,8 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import edu.nctu.minuku_2.CounterActivity;
+import edu.nctu.minuku_2.MainActivity;
 import edu.nctu.minuku_2.R;
+
+import static edu.nctu.minuku_2.controller.home.counter;
+import static edu.nctu.minuku_2.controller.home.move;
+import static edu.nctu.minuku_2.controller.home.pause;
+import static edu.nctu.minuku_2.controller.home.play;
+import static edu.nctu.minuku_2.controller.home.site;
+import static edu.nctu.minuku_2.controller.home.stop;
+import static edu.nctu.minuku_2.controller.home.traffic;
+
 
 //import edu.ohio.minuku_2.R;
 
@@ -22,7 +31,8 @@ public class timer_move extends AppCompatActivity {
     final private String LOG_TAG = "timer_move";
 
     ImageButton walk,bike,car;
-    private Button site;
+    private Button site2;
+    public static String TrafficFlag;
 
     public timer_move(){}
 
@@ -39,15 +49,67 @@ public class timer_move extends AppCompatActivity {
         bike = (ImageButton) findViewById(R.id.bike);
         car = (ImageButton) findViewById(R.id.car);
 
-        site = (Button) findViewById(R.id.site);
+        site2 = (Button) findViewById(R.id.site);
         walk.setOnClickListener(walkingTime);
-        site.setOnClickListener(siting);
+        bike.setOnClickListener(bikingTime);
+        car.setOnClickListener(carTime);
+
+        site2.setOnClickListener(siting);
+
+
     }
+
+    private ImageButton.OnClickListener bikingTime = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            TrafficFlag="bike";
+            counter.setVisibility(View.VISIBLE);
+            play.setVisibility(View.VISIBLE);
+            pause.setVisibility(View.VISIBLE);
+            stop.setVisibility(View.VISIBLE);
+            traffic.setVisibility(View.VISIBLE);
+
+            move.setVisibility(View.INVISIBLE);
+            site.setVisibility(View.INVISIBLE);
+            startActivity(new Intent(timer_move.this, MainActivity.class));
+            traffic.setImageResource(R.drawable.bike);
+            timer_move.this.finish();
+        }
+    };
+
+    private ImageButton.OnClickListener carTime = new ImageButton.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            TrafficFlag="car";
+            counter.setVisibility(View.VISIBLE);
+            play.setVisibility(View.VISIBLE);
+            pause.setVisibility(View.VISIBLE);
+            stop.setVisibility(View.VISIBLE);
+            traffic.setVisibility(View.VISIBLE);
+
+            move.setVisibility(View.INVISIBLE);
+            site.setVisibility(View.INVISIBLE);
+            startActivity(new Intent(timer_move.this, MainActivity.class));
+            traffic.setImageResource(R.drawable.car);
+            timer_move.this.finish();
+        }
+    };
 
     private ImageButton.OnClickListener walkingTime = new ImageButton.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(timer_move.this, CounterActivity.class));
+            TrafficFlag="walk";
+            counter.setVisibility(View.VISIBLE);
+            play.setVisibility(View.VISIBLE);
+            pause.setVisibility(View.VISIBLE);
+            stop.setVisibility(View.VISIBLE);
+            traffic.setVisibility(View.VISIBLE);
+
+            move.setVisibility(View.INVISIBLE);
+            site.setVisibility(View.INVISIBLE);
+            startActivity(new Intent(timer_move.this, MainActivity.class));
+            traffic.setImageResource(R.drawable.walk);
+            timer_move.this.finish();
         }
     };
 

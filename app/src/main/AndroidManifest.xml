@@ -226,11 +226,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".CounterActivity" />
-        <activity android:name=".controller.Counter" />
         <activity android:name=".controller.Timeline" />
         <activity android:name=".controller.CardView" />
         <activity android:name=".controller.PlaceSelection" />
+        <service android:name=".TimeService"/>
     </application>
 
 </manifest>

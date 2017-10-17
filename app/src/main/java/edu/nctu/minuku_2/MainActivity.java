@@ -66,6 +66,7 @@ import edu.nctu.minuku.config.Constants;
 import edu.nctu.minuku.event.DecrementLoadingProcessCountEvent;
 import edu.nctu.minuku.event.IncrementLoadingProcessCountEvent;
 import edu.nctu.minuku.logger.Log;
+import edu.nctu.minuku_2.controller.Timeline;
 import edu.nctu.minuku_2.controller.home;
 import edu.nctu.minuku_2.controller.report;
 import edu.nctu.minuku_2.service.BackgroundService;
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int BACKGROUND_RECORDING_INITIAL_DELAY = 0;
     //private UserSubmissionStats mUserSubmissionStats;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,13 +123,15 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG,"start");
 
         setContentView(R.layout.activity_main);
-
         final LayoutInflater mInflater = getLayoutInflater().from(this);
         timerview = mInflater.inflate(R.layout.home, null);
-        recordview = mInflater.inflate(R.layout.record, null);
+        recordview = mInflater.inflate(R.layout.activity_timeline, null);
 
+
+
+
+//
         initViewPager(timerview,recordview);
-
         SettingViewPager();
 
         startService(new Intent(getBaseContext(), BackgroundService.class));
@@ -145,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
     public void createShortCut(){
         Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
@@ -400,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
         viewList.add(recordview);
 
         mViewPager.setAdapter(new TimerOrRecordPagerAdapter(viewList, this));
-
+        mTabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabs));
         //TODO date button now can show on menu when switch to recordview, but need to determine where to place the date textview(default is today's date).
         mTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -536,12 +541,14 @@ public class MainActivity extends AppCompatActivity {
             View view = mListViews.get(position);
             switch (position){
                 case 0: //timer
-                    home mhome = new home(mContext);
-                    mhome.inithome(timerview);
+
+                        home mhome = new home(mContext);
+                        mhome.inithome(timerview);
 
                     break;
                 case 1: //report
-
+                    Timeline mtimeline = new Timeline(mContext);
+                    mtimeline.initTime(recordview);
                     break;
             }
 
@@ -563,4 +570,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }

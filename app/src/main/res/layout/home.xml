@@ -1,81 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/secondblock"
         android:layout_width="match_parent"
-        android:layout_height="149dp"
-        android:id="@+id/firstblock"
-        android:layout_weight="0.00"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-        <TextView
-            android:text="您最近的一次活動是13:18~13:30在圖書館"
-            android:layout_width="match_parent"
-            android:id="@+id/recentworktext"
-            android:layout_height="73dp"
-            android:textSize="24sp" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <Space
+            <TextView
+                android:id="@+id/tv_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.48" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00:00:00"
+                android:textSize="30sp" />
 
-            <Button
-                android:text="點此編輯活動"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/edituractivity"
-                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/iv_traffic"
+                android:layout_width="138dp"
+                android:layout_height="87dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/bike" />
 
         </LinearLayout>
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/secondblock"
-        android:weightSum="1"
-        android:gravity="center_vertical"
-        android:layout_weight="0.40">
-
-        <Button
+        <ImageButton
+            android:id="@+id/btn_play"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/calories"
-            android:layout_weight="0.27"
-            android:layout_marginLeft="16dp"
-            android:text="0卡" />
+            android:layout_height="78dp"
+            app:srcCompat="@drawable/icon_play" />
 
-        <Button
+        <ImageButton
+            android:id="@+id/btn_pause"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/distance"
-            android:layout_weight="0.27"
-            android:text="0m"
-            android:textAllCaps="false" />
+            android:layout_height="78dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_pause" />
 
-        <Button
+        <ImageButton
+            android:id="@+id/btn_stop"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/stepcount"
-            android:layout_weight="0.27"
-            android:layout_marginRight="16dp"
-            android:text="0步" />
-
-
+            android:layout_height="78dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_stop" />
     </LinearLayout>
 
     <LinearLayout
