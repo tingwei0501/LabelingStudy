@@ -78,7 +78,7 @@
         <activity android:name=".controller.timer_move" />
         <activity android:name=".controller.timer_site" />
         <activity
-            android:name=".MainActivity"
+            android:name=".WelcomeActivity"
             android:launchMode="singleInstance"
             android:persistent="true">
             <intent-filter>
@@ -229,7 +229,10 @@
         <activity android:name=".controller.Timeline" />
         <activity android:name=".controller.CardView" />
         <activity android:name=".controller.PlaceSelection" />
-        <service android:name=".TimeService"/>
+
+        <service android:name=".TimeService" />
+
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

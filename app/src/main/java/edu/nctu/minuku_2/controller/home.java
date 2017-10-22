@@ -7,6 +7,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import edu.nctu.minuku_2.R;
 import static edu.nctu.minuku_2.MainActivity.recordview;
 import static edu.nctu.minuku_2.MainActivity.task;
 import static edu.nctu.minuku_2.MainActivity.timerview;
+import static edu.nctu.minuku_2.controller.timer_move.TrafficFlag;
 
 //import edu.ohio.minuku_2.R;
 
@@ -73,24 +75,19 @@ public class home extends AppCompatActivity {
 
     public void inithome(View v){
         counter = (TextView) v.findViewById(R.id.tv_timer);
-        counter.setVisibility(View.INVISIBLE);
         play = (ImageButton) v.findViewById(R.id.btn_play);
-        play.setVisibility(View.INVISIBLE);
-        pause = (ImageButton) v.findViewById(R.id.btn_pause);
-        pause.setVisibility(View.INVISIBLE);
+//        pause = (ImageButton) v.findViewById(R.id.btn_pause);
         stop = (ImageButton) v.findViewById(R.id.btn_stop);
-        stop.setVisibility(View.INVISIBLE);
         move = (Button) v.findViewById(R.id.move);
-        site = (Button) v.findViewById(R.id.site);
+//        site = (Button) v.findViewById(R.id.site);
         traffic = (ImageView)v.findViewById(R.id.iv_traffic);
-        traffic.setVisibility(View.INVISIBLE);
 
         move.setOnClickListener(moving);
-        site.setOnClickListener(siting);
+//        site.setOnClickListener(siting);
 
         //Button監聽
         play.setOnClickListener(listener);
-        pause.setOnClickListener(listener);
+//        pause.setOnClickListener(listener);
         stop.setOnClickListener(listener);
 
         //宣告Timer
@@ -104,6 +101,22 @@ public class home extends AppCompatActivity {
 //        Date mDate = new Date() ; // 獲取當前時間
 //        time = mDate.getTime();
 
+        if(TrafficFlag.equals("walk")){
+            traffic.setImageResource(R.drawable.walk);
+            move.setTextColor(ContextCompat.getColor(mContext, R.color.instabug_annotation_color_yellow));
+            play.setBackgroundColor(ContextCompat.getColor(mContext, R.color.instabug_annotation_color_yellow));
+            stop.setBackgroundColor(ContextCompat.getColor(mContext, R.color.instabug_annotation_color_yellow));
+        }else if(TrafficFlag.equals("bike")){
+            traffic.setImageResource(R.drawable.bike);
+            move.setTextColor(ContextCompat.getColor(mContext, R.color.reject_button));
+            play.setBackgroundColor(ContextCompat.getColor(mContext, R.color.reject_button));
+            stop.setBackgroundColor(ContextCompat.getColor(mContext, R.color.reject_button));
+        }else if(TrafficFlag.equals("car")){
+            traffic.setImageResource(R.drawable.car);
+            move.setTextColor(ContextCompat.getColor(mContext, R.color.step_pager_previous_tab_color));
+            play.setBackgroundColor(ContextCompat.getColor(mContext, R.color.step_pager_previous_tab_color));
+            stop.setBackgroundColor(ContextCompat.getColor(mContext, R.color.step_pager_previous_tab_color));
+        }
     }
 
     private Button.OnClickListener editinguractivity = new Button.OnClickListener() {
@@ -196,9 +209,9 @@ public class home extends AppCompatActivity {
                     starttime = formatter.format(curDate);
 
                     break;
-                case R.id.btn_pause:
-                    startflag=false;
-                    break;
+//                case R.id.btn_pause:
+//                    startflag=false;
+//                    break;
                 case R.id.btn_stop:
                     tsec=0;
                     startflag=false;
@@ -210,13 +223,6 @@ public class home extends AppCompatActivity {
 
                     Timeline mtimeline = new Timeline(mContext);
                     mtimeline.initTime(recordview);
-                    counter.setVisibility(View.INVISIBLE);
-                    play.setVisibility(View.INVISIBLE);
-                    pause.setVisibility(View.INVISIBLE);
-                    stop.setVisibility(View.INVISIBLE);
-                    traffic.setVisibility(View.INVISIBLE);
-                    move.setVisibility(View.VISIBLE);
-                    site.setVisibility(View.VISIBLE);
                     //TextView 初始化
                     counter.setText("00:00:00");
 

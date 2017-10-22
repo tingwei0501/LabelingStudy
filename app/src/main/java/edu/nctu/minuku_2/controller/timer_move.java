@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import edu.nctu.minuku_2.MainActivity;
 import edu.nctu.minuku_2.R;
@@ -30,7 +31,7 @@ public class timer_move extends AppCompatActivity {
 
     final private String LOG_TAG = "timer_move";
 
-    ImageButton walk,bike,car;
+    Button walk,bike,car;
     private Button site2;
     public static String TrafficFlag;
 
@@ -45,9 +46,10 @@ public class timer_move extends AppCompatActivity {
 
     public void inittimer_move(){
 
-        walk = (ImageButton) findViewById(R.id.walk);
-        bike = (ImageButton) findViewById(R.id.bike);
-        car = (ImageButton) findViewById(R.id.car);
+        walk = (Button) findViewById(R.id.walk);
+        bike = (Button) findViewById(R.id.bike);
+        car = (Button) findViewById(R.id.car);
+        traffic = (ImageView)findViewById(R.id.iv_traffic);
 
         site2 = (Button) findViewById(R.id.site);
         walk.setOnClickListener(walkingTime);
@@ -59,56 +61,35 @@ public class timer_move extends AppCompatActivity {
 
     }
 
-    private ImageButton.OnClickListener bikingTime = new ImageButton.OnClickListener() {
+    private Button.OnClickListener bikingTime = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
             TrafficFlag="bike";
-            counter.setVisibility(View.VISIBLE);
-            play.setVisibility(View.VISIBLE);
-            pause.setVisibility(View.VISIBLE);
-            stop.setVisibility(View.VISIBLE);
-            traffic.setVisibility(View.VISIBLE);
 
-            move.setVisibility(View.INVISIBLE);
-            site.setVisibility(View.INVISIBLE);
             startActivity(new Intent(timer_move.this, MainActivity.class));
-            traffic.setImageResource(R.drawable.bike);
+//            traffic.setImageResource(R.drawable.bike);
             timer_move.this.finish();
         }
     };
 
-    private ImageButton.OnClickListener carTime = new ImageButton.OnClickListener() {
+    private Button.OnClickListener carTime = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
             TrafficFlag="car";
-            counter.setVisibility(View.VISIBLE);
-            play.setVisibility(View.VISIBLE);
-            pause.setVisibility(View.VISIBLE);
-            stop.setVisibility(View.VISIBLE);
-            traffic.setVisibility(View.VISIBLE);
 
-            move.setVisibility(View.INVISIBLE);
-            site.setVisibility(View.INVISIBLE);
             startActivity(new Intent(timer_move.this, MainActivity.class));
-            traffic.setImageResource(R.drawable.car);
+//            traffic.setImageResource(R.drawable.car);
             timer_move.this.finish();
         }
     };
 
-    private ImageButton.OnClickListener walkingTime = new ImageButton.OnClickListener() {
+    private Button.OnClickListener walkingTime = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
             TrafficFlag="walk";
-            counter.setVisibility(View.VISIBLE);
-            play.setVisibility(View.VISIBLE);
-            pause.setVisibility(View.VISIBLE);
-            stop.setVisibility(View.VISIBLE);
-            traffic.setVisibility(View.VISIBLE);
 
-            move.setVisibility(View.INVISIBLE);
-            site.setVisibility(View.INVISIBLE);
             startActivity(new Intent(timer_move.this, MainActivity.class));
-            traffic.setImageResource(R.drawable.walk);
+//            traffic.setImageResource(R.drawable.walk);
             timer_move.this.finish();
         }
     };
