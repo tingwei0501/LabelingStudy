@@ -104,6 +104,34 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String Latest_Used_App_col = "Latest_Used_App";
     public static final String Latest_Foreground_Activity_col = "Latest_Foreground_Activity";
 
+    //telephony
+    public static final String NetworkOperatorName_col = "NetworkOperatorName";
+    public static final String CallState_col = "CallState";
+    public static final String PhoneSignalType_col = "PhoneSignalType";
+    public static final String GsmSignalStrength_col = "GsmSignalStrength";
+    public static final String LTESignalStrength_col = "LTESignalStrength";
+    //public static final String CdmaSignalStrength_col = "CdmaSignalStrength";
+    public static final String CdmaSignalStrengthLevel_col = "CdmaSignalStrengthLevel";
+
+    //accessibility
+    public static final String pack_col = "pack";
+    public static final String text_col = "text";
+    public static final String type_col = "type";
+    public static final String extra_col = "extra";
+
+    //sensor
+    public static final String ACCELEROMETER_col = "ACCELEROMETER";
+    public static final String GYROSCOPE_col = "GYROSCOPE";
+    public static final String GRAVITY_col = "GRAVITY";
+    public static final String LINEAR_ACCELERATION_col = "LINEAR_ACCELERATION";
+    public static final String ROTATION_VECTOR_col = "ROTATION_VECTOR";
+    public static final String PROXIMITY_col = "PROXIMITY";
+    public static final String MAGNETIC_FIELD_col = "MAGNETIC_FIELD";
+    public static final String LIGHT_col = "LIGHT";
+    public static final String PRESSURE_col = "PRESSURE";
+    public static final String RELATIVE_HUMIDITY_col = "RELATIVE_HUMIDITY";
+    public static final String AMBIENT_TEMPERATURE_col = "AMBIENT_TEMPERATURE";
+
     //table name
     public static final String location_table = "Location";
     public static final String activityRecognition_table = "ActivityRecognition";
@@ -114,6 +142,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String battery_table = "Battery";
     public static final String connectivity_table = "Connectivity";
     public static final String appUsage_table = "AppUsage";
+    public static final String telephony_table = "Telephony";
+    public static final String accessibility_table = "Accessibility";
+    public static final String sensor_table = "Sensor";
 
 
     public static final String DATABASE_NAME = "MySQLite.db";
@@ -147,7 +178,11 @@ public class DBHelper extends SQLiteOpenHelper {
         createBatteryTable(db);
         createConnectivityTable(db);
         createAppUsageTable(db);
+        createTelephonyTable(db);
+        createAccessibilityTable(db);
+        createSensorTable(db);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -289,6 +324,66 @@ public class DBHelper extends SQLiteOpenHelper {
                 latitude_col+" FLOAT,"+
                 longitude_col +" FLOAT, " +
                 Accuracy_col + " FLOAT" +
+                ");";
+
+        db.execSQL(cmd);
+    }
+
+    public void createTelephonyTable(SQLiteDatabase db){
+
+        Log.d(TAG,"create telephony table");
+
+        String cmd = "CREATE TABLE " +
+                telephony_table + "(" +
+                id + "ID integer PRIMARY KEY AUTOINCREMENT," +
+                TIME + " TEXT NOT NULL," +
+                NetworkOperatorName_col + " TEXT," +
+                CallState_col + " INT," +
+                PhoneSignalType_col + " INT," +
+                GsmSignalStrength_col + " INT," +
+                LTESignalStrength_col + " INT," +
+                CdmaSignalStrengthLevel_col + " INT" +
+                ");";
+
+        db.execSQL(cmd);
+    }
+
+    public void createAccessibilityTable(SQLiteDatabase db){
+
+        Log.d(TAG, "create accessibility table");
+
+        String cmd = "CREATE TABLE " +
+                accessibility_table + "(" +
+                id + "ID integer PRIMARY KEY AUTOINCREMENT," +
+                TIME + " TEXT NOT NULL," +
+                pack_col + " TEXT," +
+                text_col + " TEXT," +
+                type_col + " TEXT," +
+                extra_col + " TEXT" +
+                ");";
+
+        db.execSQL(cmd);
+    }
+
+    private void createSensorTable(SQLiteDatabase db) {
+
+        Log.d(TAG, "create sensor table");
+
+        String cmd = "CREATE TABLE " +
+                sensor_table + "(" +
+                id + "ID integer PRIMARY KEY AUTOINCREMENT," +
+                TIME + " TEXT NOT NULL," +
+                ACCELEROMETER_col + " TEXT," +
+                GYROSCOPE_col + " TEXT," +
+                GRAVITY_col + " TEXT," +
+                LINEAR_ACCELERATION_col + " TEXT," +
+                ROTATION_VECTOR_col + " TEXT," +
+                PROXIMITY_col + " TEXT," +
+                MAGNETIC_FIELD_col + " TEXT," +
+                LIGHT_col + " TEXT," +
+                PRESSURE_col + " TEXT," +
+                RELATIVE_HUMIDITY_col + " TEXT," +
+                AMBIENT_TEMPERATURE_col + " TEXT" +
                 ");";
 
         db.execSQL(cmd);

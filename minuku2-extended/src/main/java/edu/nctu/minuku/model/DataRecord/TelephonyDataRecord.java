@@ -1,5 +1,8 @@
 package edu.nctu.minuku.model.DataRecord;
 
+import android.util.Log;
+
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.nctu.minukucore.model.DataRecord;
@@ -9,17 +12,81 @@ import edu.nctu.minukucore.model.DataRecord;
  */
 
 public class TelephonyDataRecord implements DataRecord {
-    public String base64Data;
-    public long creationTime;
 
-    public TelephonyDataRecord(String base64Data) {
-        this.base64Data = base64Data;
+    private final String TAG = "TelephonyDataRecord";
+
+    public long creationTime;
+    private int taskDayCount;
+    private long hour;
+    private String NetworkOperatorName = "NA";
+    private int CallState = -9999;
+    private int PhoneSignalType = -9999;
+    private int GsmSignalStrength = -9999;
+    private int LTESignalStrength = -9999;
+    private int CdmaSignalStrengthLevel = -9999;
+
+
+    public TelephonyDataRecord(String NetworkOperatorName, int CallState, int PhoneSignalType
+            , int GsmSignalStrength, int LTESignalStrength, int CdmaSignalStrengthLevel) {
+
         this.creationTime = new Date().getTime();
+        this.NetworkOperatorName = NetworkOperatorName;
+        this.CallState = CallState;
+        this.PhoneSignalType = PhoneSignalType;
+        this.GsmSignalStrength = GsmSignalStrength;
+        this.LTESignalStrength = LTESignalStrength;
+        this.CdmaSignalStrengthLevel = CdmaSignalStrengthLevel;
+
+        Log.d(TAG,"mNetworkOperatorName : "+ NetworkOperatorName +" mCallState : "+ CallState+" mPhoneSignalType : "+ PhoneSignalType
+                +" mGsmSignalStrength : "+ GsmSignalStrength+" mLTESignalStrength : "+ LTESignalStrength
+                +" mCdmaSignalStrenthLevel : "+ CdmaSignalStrengthLevel);
+    }
+
+    private long getmillisecondToHour(long timeStamp){
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeStamp);
+
+        long mhour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        return mhour;
+
+    }
+    public long getHour(){
+        return hour;
+    }
+
+    public int getTaskDayCount(){
+        return taskDayCount;
     }
 
     @Override
     public long getCreationTime() {
 
         return creationTime;
+    }
+
+    public String getNetworkOperatorName() {
+        return NetworkOperatorName;
+    }
+
+    public int getCallState() {
+        return CallState;
+    }
+
+    public int getPhoneSignalType() {
+        return PhoneSignalType;
+    }
+
+    public int getGsmSignalStrength() {
+        return GsmSignalStrength;
+    }
+
+    public int getLTESignalStrength() {
+        return LTESignalStrength;
+    }
+
+    public int getCdmaSignalStrengthLevel() {
+        return CdmaSignalStrengthLevel;
     }
 }

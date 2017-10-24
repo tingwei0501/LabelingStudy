@@ -27,7 +27,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.icu.text.StringPrepParseException;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,10 +37,13 @@ import org.json.JSONObject;
 import java.util.List;
 
 import edu.nctu.minuku.config.Constants;
+import edu.nctu.minuku.dao.SensorDataRecordDAO;
 import edu.nctu.minuku.logger.Log;
+import edu.nctu.minuku.manager.MinukuDAOManager;
 import edu.nctu.minuku.manager.MinukuStreamManager;
 import edu.nctu.minuku.model.DataRecord.SensorDataRecord;
 import edu.nctu.minuku.stream.SensorStream;
+import edu.nctu.minukucore.dao.DAOException;
 import edu.nctu.minukucore.exception.StreamAlreadyExistsException;
 import edu.nctu.minukucore.exception.StreamNotFoundException;
 import edu.nctu.minukucore.stream.Stream;
@@ -57,8 +62,8 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
 
     private SensorStream mStream;
     private String TAG = "SensorStreamGenerator";
-    private Sensor sensor;
-    //SensorDataRecordDAO mDAO;
+    SensorDataRecordDAO mDAO;
+
     public static SensorDataRecord sensorDataRecord;
     /** Tag for logging. */
     private static final String LOG_TAG = "PhoneSensorMnger";
@@ -116,13 +121,17 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
 
     private float mLight, mPressure, mRelativeHumidity, mAmbientTemperature ;
 
+    ///// String to save each sensor-name and values
+    String mAccele_str, mGyroscope_str, mGravity_str, mLinearAcceleration_str, mRotationVector_str,
+            mProximity_str, mMagneticField_str, mLight_str, mPressure_str, mRelativeHumidity_str,  mAmbientTemperature_str;
+
 
     /** handle stream **/
     /**sensorStreamGenerator**/
     public SensorStreamGenerator(Context applicationContext) {
         super(applicationContext);
         this.mStream = new SensorStream(Constants.SENSOR_QUEUE_SIZE);
-        //this.mDAO = MinukuDAOManager.getInstance().getDaoFor(SensorDataRecord.class);
+        this.mDAO = MinukuDAOManager.getInstance().getDaoFor(SensorDataRecord.class);
 
         mContext = applicationContext;
         //call sensor manager from the service
@@ -172,7 +181,27 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
 
     @Override
     public boolean updateStream() {
-        return false;
+        Log.d(TAG, "updateStream called");
+
+        SensorDataRecord sensorDataRecord = new SensorDataRecord(mAccele_str, mGyroscope_str, mGravity_str, mLinearAcceleration_str,
+                mRotationVector_str, mProximity_str, mMagneticField_str, mLight_str, mPressure_str, mRelativeHumidity_str, mAmbientTemperature_str);
+        mStream.add(sensorDataRecord);
+        Log.d(TAG, "Sensor to be sent to event bus" + sensorDataRecord);
+
+        //post an event
+        EventBus.getDefault().post(sensorDataRecord);
+        try {
+            mDAO.add(sensorDataRecord);
+            mDAO.query_check();
+        } catch (DAOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
 
@@ -212,51 +241,50 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
 
         /**Motion Sensor**/
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
-            getAccelerometer(event);
+            mAccele_str = saveRecordToStream(STRING_PHONE_SENSOR_ACCELEROMETER, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE){
-            getGyroscope(event);
+            mGyroscope_str = saveRecordToStream(STRING_PHONE_SENSOR_GYROSCOPE, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_GRAVITY){
-            getGravity(event);
+            mGravity_str = saveRecordToStream(STRING_PHONE_SENSOR_GRAVITY, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION){
-            getLinearAcceleration(event);
+            mLinearAcceleration_str = saveRecordToStream(STRING_PHONE_SENSOR_LINEAR_ACCELERATION, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR){
-            getRotationVector(event);
+            mRotationVector_str = saveRecordToStream(STRING_PHONE_SENSOR_ROTATION_VECTOR, event.values);
         }
 
         /**Position Sensor**/
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY){
-            Log.d(LOG_TAG, "in [onSensorChange] Proximity: " +  event.values[0] );
-            getProximity(event);
+            //Log.d(LOG_TAG, "in [onSensorChange] Proximity: " +  event.values[0] );
+            mProximity_str = saveRecordToStream(STRING_PHONE_SENSOR_PROXIMITY, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
-            Log.d(LOG_TAG, "in [onSensorChange] Proximity: " +  event.values[0] );
-            getMagneticField(event);
+            //Log.d(LOG_TAG, "in [onSensorChange] Proximity: " +  event.values[0] );
+            mMagneticField_str = saveRecordToStream(STRING_PHONE_SENSOR_MAGNETIC_FIELD, event.values);
         }
-        if (event.sensor.getType() == Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR){
-            Log.d(LOG_TAG, "in [onSensorChange] Proximity: " +  event.values[0] );
-            getMagneticField(event);
-        }
+        /*if (event.sensor.getType() == Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR){
+
+        }*/
 
         /**Environment Sensor**/
         if (event.sensor.getType() == Sensor.TYPE_LIGHT){
-            getLight(event);
+            mLight_str = saveRecordToStream(STRING_PHONE_SENSOR_LIGHT, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE){
-            getAmbientTemperature(event);
+            mAmbientTemperature_str = saveRecordToStream(STRING_PHONE_SENSOR_AMBIENT_TEMPERATURE, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_PRESSURE){
-            getPressure(event);
+            mPressure_str = saveRecordToStream(STRING_PHONE_SENSOR_PRESSURE, event.values);
         }
         if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY){
-            getRelativeHumidity(event);
+            mRelativeHumidity_str = saveRecordToStream(STRING_PHONE_SENSOR_RELATIVE_HUMIDITY, event.values);
         }
 
         /**health related**/
-        if (event.sensor.getType() == Sensor.TYPE_HEART_RATE){
+        /*if (event.sensor.getType() == Sensor.TYPE_HEART_RATE){
             getHeartRate (event);
         }
         if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER){
@@ -264,7 +292,7 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
         }
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR){
             getStepDetector(event);
-        }
+        }*/
     }
 
     @Override
@@ -275,34 +303,34 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
     /**
      * In PhoneSensorManager, all the values are float numbers
      */
-    protected void saveRecordToStream (String sourceName, float[] values) {
+    protected String saveRecordToStream (String sourceName, float[] values) {
 
         /** store values into a Record so that we can store them in the local database **/
-        SensorDataRecord newSensorDataRecord = new SensorDataRecord( );
-        newSensorDataRecord.setSource(sourceName);
+        //SensorDataRecord newSensorDataRecord = new SensorDataRecord( );
+        //newSensorDataRecord.setSource(sourceName);
 
         /** create data in a JSON Object. Each CotnextSource will have different formats.
          * So we need each ContextSourceMAnager to implement this part**/
-        JSONObject data = new JSONObject();
-        JSONArray array = new JSONArray();
+        /*JSONObject data = new JSONObject();
+        JSONArray array = new JSONArray();*/
+        String data = "";
 
-        try {
-
-            //put all values in Data JSONObject
-            for (int i=0; i< values.length; i++) {
-                array.put(values[i]);
-            }
-
-            data.put(RECORD_DATA_PROPERTY_NAME, array);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+        for (int i=0; i< values.length; i++) {
+            data = data + values[i];
+            if (i==values.length-1)
+                break;
+            else
+                data = data + ", ";
         }
 
-        /*** Set data to SensorDataRecord **/
-        newSensorDataRecord.setData(data);
-        Log.d(LOG_TAG, "in SaveRecordtostream " +  newSensorDataRecord.getSource() + newSensorDataRecord.getData() );
+        data = sourceName+": "+data;
+        Log.d(TAG, "data  "+ data);
 
+        /*** Set data to SensorDataRecord **/
+        //newSensorDataRecord.setData(data);
+        //Log.d(LOG_TAG, "in SaveRecordtostream " +  newSensorDataRecord.getSource() + newSensorDataRecord.getData() );
+
+        return data;
         /** Save to stream**/
         // mLocalRecordPool.add(record);
         //updateStream(ChangeJsonForm(newSensorDataRecord));
@@ -311,7 +339,7 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
 
     /**get Accelerometer values**/
     private void getAccelerometer(SensorEvent event) {
-        Log.d(LOG_TAG, "getting accelerometer:" + mAccele_x + " : " +  mAccele_y +  " : " + mAccele_y);
+        Log.d(LOG_TAG, "getting accelerometer:" + mAccele_x + " : " +  mAccele_y +  " : " + mAccele_z);
 
         mAccele_x = event.values[0];    // Acceleration force along the x axis (including gravity). m/s2
         mAccele_y = event.values[1];    // Acceleration force along the y axis (including gravity). m/s2
@@ -427,7 +455,5 @@ public class SensorStreamGenerator extends AndroidStreamGenerator<SensorDataReco
 
         saveRecordToStream(STRING_PHONE_SENSOR_STEP_DETECTOR, event.values);
     }
-
-
 
 }

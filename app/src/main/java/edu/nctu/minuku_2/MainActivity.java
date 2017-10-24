@@ -71,6 +71,8 @@ import edu.nctu.minuku_2.controller.home;
 import edu.nctu.minuku_2.controller.report;
 import edu.nctu.minuku_2.service.BackgroundService;
 
+import static android.support.v4.app.ActivityCompat.startActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -134,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
         initViewPager(timerview,recordview);
         SettingViewPager();
 
+
         startService(new Intent(getBaseContext(), BackgroundService.class));
+        startpermission();
         //startService(new Intent(getBaseContext(), MinukuNotificationManager.class));
         //startService(new Intent(getBaseContext(), DiaryNotificationService.class));  might be useless for us
 
@@ -194,13 +198,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void startpermission(){
         //Maybe useless in this project.
-//                    startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));  // 協助工具
+        //startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));  // 協助工具
+        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+        startActivity(intent);  // 協助工具
 
         Intent intent1 = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);  //usage
         startActivity(intent1);
 
-//                    Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS); //notification
-//                    startActivity(intent);
+     /*               Intent intent2 = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS); //notification
+                    startActivity(intent2);*/
 
         startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));	//location
     }
